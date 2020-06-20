@@ -65,3 +65,22 @@ This project is designed to make you understand modern tools used to create appl
 * Select your newly created Github repo<br />
 * Setup project, and build it
 
+### 10. File listing
+```
+├── Dockerfile -- contains instructions for building the docker image
+├── Makefile -- builds the Python environment, installs required packages and performs code linting
+├── README -- original README file
+├── README.md -- this file
+├── app.py -- the Python app that provides the required service
+├── make_prediction.sh -- sends data to application
+├── model_data -- directory with modeling data
+│   ├── boston_housing_prediction.joblib
+│   └── housing.csv
+├── output_txt_files -- directory with results of running the app
+│   ├── docker_out.txt -- results from running app in as a Docker container
+│   └── kubernetes_out.txt -- results from running app as a kubernetes deployment
+├── requirements.txt -- contains list of python libraries required by our application
+├── run_docker.sh -- build docker image, expose ports and run container and launch application
+├── run_kubernetes.sh -- deploy app in a kubernetes cluster
+├── upload_docker.sh -- upload Docker image to Docker Hub
+```
