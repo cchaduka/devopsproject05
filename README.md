@@ -1,42 +1,67 @@
 [![CircleCI](https://circleci.com/gh/cchaduka/devopsproject05.svg?style=svg)](https://circleci.com/gh/cchaduka/devopsproject05)
 
-## Project Overview
+### 1. Project Description
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+This project is designed to make you understand modern tools used to create application microservices using Python, Git, Docker and Kubernetes. The project takes you through the following:-<br />
+* installing some prerequisite software for everything to run
+* making changes to skeleton code
+* building docker images
+* running Docker containers
+* uploading images to an image repository / hub
+* deploying Docker containerized apps into kubernetes
+* Continuous Intergration using online tools
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+### 2. Install Core Applications
 
-### Project Tasks
+* Install Homebrew -- https://brew.sh/<br />
+* Install Python3 -- https://docs.python-guide.org/starting/install3/osx/<br />
+* Install git -- https://www.atlassian.com/git/tutorials/install-git<br />
+* Install Docker Desktop -- https://www.docker.com/products/docker-desktop<br />
+* Install Virtualbox -- ```brew cask install virtualbox```<br />
+* Install Minikube -- ```brew install minikube```<br />
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+### 3. Ready the Environment
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+* Clone the project's base files -- ```git clone https://github.com/udacity/DevOps_Microservices.git```<br />
+* Move into the working directory -- ```cd DevOps_Microservices/project-ml-microservice-kubernetes```<br />
+* Create a Python3 environment -- ```python3 -m venv ~/.devops```<br />
+* Activate it -- ```source ~/.devops/bin/activate```<br />
+* Edit ```requirements.txt``` and add ```pylint==2.3```. Newer versions (especially 2.5.3) gave formatting issues with Python3's formatted strings<br /> 
+* Install hadolint -- ```brew install hadolint```<br />
+* Install dependencies -- ```make install```<br />
+* Project must pass 2 lint tests -- ```make lint```<br />
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+### 4. Run project in Docker
 
----
+* Build Docker image and run app -- ```./run_docker.sh```<br />
+* In a separate terminal, send data to app -- ```./make_prediction.sh```<br />
 
-## Setup the Environment
+### 5. Docker Repo
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+* Upload Docker image to [Docker Hub](hub.docker.com) under your username -- ```./upload_docker.sh```
 
-### Running `app.py`
+### 6. Run project in Kubernetes
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+* Start Kubernetes -- ```minikube start```
 
-### Kubernetes Steps
+### 7. Kubernetes Deployment
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+* Deploy application -- ```./run_kubernetes.sh```<br />
+* List running pods -- ```kubectl get pod```<br />
+* Get pod console output / log -- ```kubectl logs <pod name>```
+
+### 8. Github
+
+* Login to [Github](https://github.com)<br />
+* Create a new project repository<br />
+* Upload all the project files to Github
+
+### 9. CircleCI Integration
+
+* On Github, under your new repo, create a ```.circleci/config.yml``` file (**_it's blank**_)<br />
+* Paste contents of this file into this new ```config.yml``` file, **making sure it's a well formatted YAML** file -- https://s3.amazonaws.com/video.udacity-data.com/topher/2019/May/5cda0d76_config/config.yml<br />
+* Go to https://circleci.com in your browser<br />
+* Sign up or login<br />
+* Select your newly created Github repo<br />
+* Setup project, and build it
+
