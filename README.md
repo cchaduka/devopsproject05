@@ -67,6 +67,8 @@ This project is designed to make you understand modern tools used to create appl
 
 ### 10. File listing
 ```
+├── .circleci -- directory with CircleCI config file
+│   ├── config.yml -- CircleCI config file
 ├── Dockerfile -- contains instructions for building the docker image
 ├── Makefile -- builds the Python environment, installs required packages and performs code linting
 ├── README -- original README file
